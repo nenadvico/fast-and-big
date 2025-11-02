@@ -1,7 +1,7 @@
 package org.fast.search.hash;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -19,48 +19,48 @@ public class SearchTableTest {
      public void testAddContainsInt() {
          SearchTable<Integer> searchTable = new SearchTable<Integer>();
          searchTable.add(0);
-         Assert.assertTrue(searchTable.contains(0));
+         assertTrue(searchTable.contains(0));
          searchTable.add(1);
-         Assert.assertTrue(searchTable.contains(1));
+         assertTrue(searchTable.contains(1));
          searchTable.add(-1);
          searchTable.add(-1);
-         Assert.assertTrue(searchTable.contains(-1));
+         assertTrue(searchTable.contains(-1));
          searchTable.add(Integer.MAX_VALUE);
-         Assert.assertTrue(searchTable.contains(Integer.MAX_VALUE));
+         assertTrue(searchTable.contains(Integer.MAX_VALUE));
          searchTable.add(Integer.MIN_VALUE);
-         Assert.assertFalse(searchTable.contains(2));
-         Assert.assertFalse(searchTable.contains(Integer.MIN_VALUE + 1));
-         Assert.assertFalse(searchTable.contains(Integer.MAX_VALUE - 1));
-         Assert.assertFalse(searchTable.contains(12635574));
-         Assert.assertFalse(searchTable.contains(-849573839));
+         assertFalse(searchTable.contains(2));
+         assertFalse(searchTable.contains(Integer.MIN_VALUE + 1));
+         assertFalse(searchTable.contains(Integer.MAX_VALUE - 1));
+         assertFalse(searchTable.contains(12635574));
+         assertFalse(searchTable.contains(-849573839));
      }
 
      @Test
      public void testAddRemoveContainsInt() {
          SearchTable<Integer> searchTable = new SearchTable<Integer>();
          searchTable.add(1);
-         Assert.assertTrue(searchTable.contains(1));
+         assertTrue(searchTable.contains(1));
          searchTable.add(-1);
          searchTable.add(-1);
-         Assert.assertTrue(searchTable.contains(-1));
+         assertTrue(searchTable.contains(-1));
          searchTable.add(Integer.MAX_VALUE);
-         Assert.assertTrue(searchTable.contains(Integer.MAX_VALUE));
+         assertTrue(searchTable.contains(Integer.MAX_VALUE));
          searchTable.add(Integer.MIN_VALUE);
 
          searchTable.remove(1);
-         Assert.assertFalse(searchTable.contains(1));
+         assertFalse(searchTable.contains(1));
          searchTable.remove(-1);
-         Assert.assertFalse(searchTable.contains(-1));
+         assertFalse(searchTable.contains(-1));
          searchTable.remove(Integer.MAX_VALUE);
-         Assert.assertFalse(searchTable.contains(Integer.MAX_VALUE));
+         assertFalse(searchTable.contains(Integer.MAX_VALUE));
          searchTable.remove(Integer.MIN_VALUE);
-         Assert.assertFalse(searchTable.contains(Integer.MIN_VALUE));
+         assertFalse(searchTable.contains(Integer.MIN_VALUE));
 
-         Assert.assertFalse(searchTable.contains(2));
-         Assert.assertFalse(searchTable.contains(Integer.MIN_VALUE+1));
-         Assert.assertFalse(searchTable.contains(Integer.MAX_VALUE-1));
-         Assert.assertFalse(searchTable.contains(12635574));
-         Assert.assertFalse(searchTable.contains(-849573839));
+         assertFalse(searchTable.contains(2));
+         assertFalse(searchTable.contains(Integer.MIN_VALUE+1));
+         assertFalse(searchTable.contains(Integer.MAX_VALUE-1));
+         assertFalse(searchTable.contains(12635574));
+         assertFalse(searchTable.contains(-849573839));
      }
 
 
@@ -77,7 +77,7 @@ public class SearchTableTest {
             result |= searchTable.add(i);
         }
         long end = System.nanoTime();
-        Assert.assertFalse(result);
+        assertFalse(result);
         System.out.println("Adding: "+size+" takes:"+(end-begin)+" ns average: "+((end-begin)/size)+" ns per add");
 
         System.out.println("Checking: "+size+" elements...");
@@ -86,7 +86,7 @@ public class SearchTableTest {
         for(int i = (int)start; i < stop; i++) {
             result &= searchTable.contains(i);
         }
-        Assert.assertTrue(result);
+        assertTrue(result);
         end = System.nanoTime();
         System.out.println("Checking: "+size+" takes:"+(end-begin)+" ns average: "+((end-begin)/size)+" ns per check");
 
@@ -96,7 +96,7 @@ public class SearchTableTest {
         for(int i = (int)start; i < stop; i++) {
             result &= searchTable.remove(i);
         }
-        Assert.assertTrue(result);
+        assertTrue(result);
         end = System.nanoTime();
         System.out.println("Removing: "+size+" takes:"+(end-begin)+" ns average: "+((end-begin)/size)+" ns per remove");
     }
@@ -115,7 +115,7 @@ public class SearchTableTest {
             result |= searchTable.add(i);
         }
         long end = System.nanoTime();
-        Assert.assertFalse(result);
+        assertFalse(result);
         System.out.println("Adding: "+size+" takes:"+(end-begin)+" ns average: "+((end-begin)/size)+" ns per add");
 
         System.out.println("Checking: "+size+" elements...");
@@ -125,7 +125,7 @@ public class SearchTableTest {
             result &= searchTable.contains(i);
         }
         end = System.nanoTime();
-        Assert.assertTrue(result);
+        assertTrue(result);
         System.out.println("Checking: "+size+" takes:"+(end-begin)+" ns average: "+((end-begin)/size)+" ns per check");
 
         System.out.println("Removing: "+size+" elements...");
@@ -135,7 +135,7 @@ public class SearchTableTest {
             result &= searchTable.remove(i);
         }
         end = System.nanoTime();
-        Assert.assertTrue(result);
+        assertTrue(result);
         System.out.println("Removing: "+size+" takes:"+(end-begin)+" ns average: "+((end-begin)/size)+" ns per remove");
     }
 
@@ -160,7 +160,7 @@ public class SearchTableTest {
         for(long i = start; i < stop; i++) {
             result &= searchTable.contains(i+"");
         }
-        Assert.assertTrue(result);
+        assertTrue(result);
         end = System.nanoTime();
         System.out.println("Checking: "+size+" takes:"+(end-begin)+" ns average: "+((end-begin)/size)+" ns per check");
 

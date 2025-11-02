@@ -1,15 +1,17 @@
 package org.fast.search.hash;
 
+import org.fast.FastTable;
+
 /**
  * @param <T> object type.
  * @author Nenad.Vico
  */
 public abstract class UltraHashSearchTable<T>
 {
-    private FastTable loTable = new FastTable();
-    private FastTable hiTable = new FastTable();
-    private FastTable uhTable = new FastTable();
-    private FastTable xrTable = new FastTable();
+    private final FastTable loTable = new FastTable();
+    private final FastTable hiTable = new FastTable();
+    private final FastTable uhTable = new FastTable();
+    private final FastTable xrTable = new FastTable();
 
     /**
      * Adds object to table.
@@ -17,7 +19,7 @@ public abstract class UltraHashSearchTable<T>
      * @return Returns true if already exists, otherwise false.
      */
     public final boolean add(T object) {
-        long hash[] = hashCode(object);
+        long[] hash = hashCode(object);
         int lo = (int)hash[0];
         int hi = (int)(hash[0] >>> 32);
         int uh = (int)hash[1];
@@ -35,7 +37,7 @@ public abstract class UltraHashSearchTable<T>
      * @return Returns true if removed, otherwise false.
      */
     public final boolean remove(T object) {
-        long hash[] = hashCode(object);
+        long[] hash = hashCode(object);
         int lo = (int)hash[0];
         int hi = (int)(hash[0] >>> 32);
         int uh = (int)hash[1];
@@ -60,7 +62,7 @@ public abstract class UltraHashSearchTable<T>
      * @return Returns true if object contains in fastTable.
      */
     public final boolean contains(T object) {
-        long hash[] = hashCode(object);
+        long[] hash = hashCode(object);
         int lo = (int)hash[0];
         int hi = (int)(hash[0] >>> 32);
         int uh = (int)hash[1];

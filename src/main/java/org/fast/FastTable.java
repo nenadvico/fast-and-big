@@ -1,4 +1,4 @@
-package org.fast.search.hash;
+package org.fast;
 
 /**
  * Table of hash codes used for search. Object requires 512 MB of memory.
@@ -9,7 +9,8 @@ package org.fast.search.hash;
  * @author Nenad.Vico
  */
 public class FastTable {
-    private int[] table = new int[134217728];
+    private static final int INT_SIZE = 134217728;
+    private final int[] table = new int[INT_SIZE];
 
     /**
      * Adds hash code to table.

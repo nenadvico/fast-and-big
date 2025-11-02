@@ -109,7 +109,7 @@ public class LongIntHashMap extends HashMap<Long,Integer> {
             } else if (data[index] == key1 && data[index+1] == key2 && data[index+2] == key3) {
                 int value = data[index+4];
                 value <<= 16;
-                value |= (int)data[index+3];
+                value |= data[index+3];
                 return value;
             }
         }
@@ -161,7 +161,7 @@ public class LongIntHashMap extends HashMap<Long,Integer> {
             } else if (data[index] == key1 && data[index+1] == key2 && data[index+2] == key3) {
                 int oldValue = data[index+4];
                 oldValue <<= 16;
-                oldValue |= (int)data[index+3];
+                oldValue |= data[index+3];
                 data[index+3] = value1;
                 data[index+4] = value2;
                 return oldValue;
@@ -220,7 +220,7 @@ public class LongIntHashMap extends HashMap<Long,Integer> {
             } else if (data[index] == key1 && data[index+1] == key2 && data[index+2] == key3) {
                 int value = data[index+4];
                 value <<= 16;
-                value |= (int)data[index+3];
+                value |= data[index+3];
                 data[index+3] = 0;
                 data[index+4] = 0;
                 count--;

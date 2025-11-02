@@ -1,5 +1,7 @@
 package org.fast.search.hash;
 
+import org.fast.FastTable;
+
 /**
  * @param <T> object type.
  * @author Nenad.Vico
@@ -7,8 +9,8 @@ package org.fast.search.hash;
 
 public abstract class LongHashSearchTable<T>
 {
-    private FastTable loTable = new FastTable();
-    private FastTable hiTable = new FastTable();
+    private final FastTable loTable = new FastTable();
+    private final FastTable hiTable = new FastTable();
 
     /**
      * Adds object to table.

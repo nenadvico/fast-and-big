@@ -100,15 +100,15 @@ public class StringLongHashMap extends HashMap<String,Long> {
             int index = start + ROW_SIZE*i;
             if (data[index+2] == 0) { // detects if rest is empty
                 if (removeable) {
-                    return (Long)over.get(key);
+                    return over.get(key);
                 }
                 return null;
             } else if (data[index] == key1 && data[index+1] == key2) {
-                long val = (data[index+3] << 32) + data[index+2];
+                long val = ((long) data[index + 3] << 32) + data[index+2];
                 return val;
             }
         }
-        return (Long)over.get(key);
+        return over.get(key);
     }
 
     /**
@@ -131,7 +131,7 @@ public class StringLongHashMap extends HashMap<String,Long> {
      */
     @Override
     public Long put(String key, Long value) {
-        long val = (Long)value;
+        long val = value;
         int val1 = (int)val;
         int val2 = (int)(val >>> 32);
         long [] h = hash(key);
@@ -151,7 +151,7 @@ public class StringLongHashMap extends HashMap<String,Long> {
                 count++;
                 return null;
             } else if (data[index] == key1 && data[index+1] == key2) {
-                long oldValue = (data[index+3] << 32) + data[index+2];
+                long oldValue = ((long) data[index + 3] << 32) + data[index+2];
                 data[index+2] = val1;
                 data[index+3] = val2;
                 return oldValue;
@@ -205,7 +205,7 @@ public class StringLongHashMap extends HashMap<String,Long> {
             if (data[index+2] == 0) { // && data[index+4] == 0) {
                 break;
             } else if (data[index] == key1 && data[index+1] == key2) {
-                long value = (data[index+3] << 32) + data[index+2];
+                long value = ((long) data[index + 3] << 32) + data[index+2];
                 data[index+2] = 0;
                 count--;
                 for (int j=i+1; j<backetSize; j++) {

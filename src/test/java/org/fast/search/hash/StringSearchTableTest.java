@@ -1,7 +1,7 @@
 package org.fast.search.hash;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.UUID;
 
@@ -18,30 +18,30 @@ public class StringSearchTableTest {
      public void testAddContains() {
          StringSearchTable searchTable = new StringSearchTable();
          searchTable.add("0");
-         Assert.assertTrue(searchTable.contains("0"));
+         assertTrue(searchTable.contains("0"));
          searchTable.add("1");
-         Assert.assertTrue(searchTable.contains("1"));
+         assertTrue(searchTable.contains("1"));
          searchTable.add("-1");
          searchTable.add("-1");
-         Assert.assertTrue(searchTable.contains("-1"));
-         Assert.assertFalse(searchTable.contains("2"));
-         Assert.assertFalse(searchTable.contains("12635574"));
-         Assert.assertFalse(searchTable.contains("-849573839"));
+         assertTrue(searchTable.contains("-1"));
+         assertFalse(searchTable.contains("2"));
+         assertFalse(searchTable.contains("12635574"));
+         assertFalse(searchTable.contains("-849573839"));
      }
 
      @Test
      public void testAddRemoveContains() {
          StringSearchTable searchTable = new StringSearchTable();
          searchTable.add("1");
-         Assert.assertTrue(searchTable.contains("1"));
+         assertTrue(searchTable.contains("1"));
          searchTable.add("-1");
          searchTable.add("-1");
-         Assert.assertTrue(searchTable.contains("-1"));
+         assertTrue(searchTable.contains("-1"));
 
          searchTable.remove("1");
-         Assert.assertFalse(searchTable.contains("1"));
+         assertFalse(searchTable.contains("1"));
          searchTable.remove("-1");
-         Assert.assertFalse(searchTable.contains("-1"));
+         assertFalse(searchTable.contains("-1"));
       }
 
 
@@ -58,7 +58,7 @@ public class StringSearchTableTest {
             result |= searchTable.add(i+"");
         }
         long end = System.nanoTime();
-        Assert.assertFalse(result);
+        assertFalse(result);
         System.out.println("Adding: "+size+" takes:"+(end-begin)+" ns average: "+((end-begin)/size)+" ns per add");
 
         System.out.println("Checking: "+size+" elements...");
@@ -67,7 +67,7 @@ public class StringSearchTableTest {
         for(int i = (int)start; i < stop; i++) {
             result &= searchTable.contains(i+"");
         }
-        Assert.assertTrue(result);
+        assertTrue(result);
         end = System.nanoTime();
         System.out.println("Checking: "+size+" takes:"+(end-begin)+" ns average: "+((end-begin)/size)+" ns per check");
 

@@ -1,7 +1,7 @@
 package org.fast.search;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 import java.util.UUID;
 
 /**
@@ -17,45 +17,45 @@ public class StringSearchEngineTest {
      public void testAddContains() {
          StringSearchEngine searchEngine = new StringSearchEngine(2);
          searchEngine.add("0");
-         Assert.assertTrue(searchEngine.contains("0"));
+         assertTrue(searchEngine.contains("0"));
          searchEngine.add("1");
-         Assert.assertTrue(searchEngine.contains("1"));
+         assertTrue(searchEngine.contains("1"));
          searchEngine.add("test1");
          searchEngine.add("test1");
-         Assert.assertTrue(searchEngine.contains("test1"));
+         assertTrue(searchEngine.contains("test1"));
          searchEngine.add("Hello World");
-         Assert.assertTrue(searchEngine.contains("Hello World"));
+         assertTrue(searchEngine.contains("Hello World"));
 
-         Assert.assertFalse(searchEngine.contains("2"));
-         Assert.assertFalse(searchEngine.contains("test2"));
-         Assert.assertFalse(searchEngine.contains(""));
-         Assert.assertFalse(searchEngine.contains("what time is it"));
-         Assert.assertFalse(searchEngine.contains("nenad.vico@yahoo.com"));
+         assertFalse(searchEngine.contains("2"));
+         assertFalse(searchEngine.contains("test2"));
+         assertFalse(searchEngine.contains(""));
+         assertFalse(searchEngine.contains("what time is it"));
+         assertFalse(searchEngine.contains("nenad.vico@yahoo.com"));
      }
 
      @Test
      public void testAddRemoveContainsInt() {
          StringSearchEngine searchEngine = new StringSearchEngine(2);
          searchEngine.add("0");
-         Assert.assertTrue(searchEngine.contains("0"));
+         assertTrue(searchEngine.contains("0"));
          searchEngine.add("1");
-         Assert.assertTrue(searchEngine.contains("1"));
+         assertTrue(searchEngine.contains("1"));
          searchEngine.add("test1");
          searchEngine.add("test1");
-         Assert.assertTrue(searchEngine.contains("test1"));
+         assertTrue(searchEngine.contains("test1"));
          searchEngine.add("Hello World");
 
          searchEngine.remove("1");
-         Assert.assertFalse(searchEngine.contains("1"));
+         assertFalse(searchEngine.contains("1"));
          searchEngine.remove("-1");
-         Assert.assertFalse(searchEngine.contains("-1"));
+         assertFalse(searchEngine.contains("-1"));
          searchEngine.remove("test1");
-         Assert.assertFalse(searchEngine.contains("test1"));
-         Assert.assertFalse(searchEngine.contains("Hello World"));
+         assertFalse(searchEngine.contains("test1"));
+         assertTrue(searchEngine.contains("Hello World"));
 
-         Assert.assertFalse(searchEngine.contains("2"));
-         Assert.assertFalse(searchEngine.contains("what time is it"));
-         Assert.assertFalse(searchEngine.contains("nenad.vico@yahoo.com"));
+         assertFalse(searchEngine.contains("2"));
+         assertFalse(searchEngine.contains("what time is it"));
+         assertFalse(searchEngine.contains("nenad.vico@yahoo.com"));
      }
 
 

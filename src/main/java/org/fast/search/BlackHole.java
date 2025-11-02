@@ -2,10 +2,10 @@ package org.fast.search;
 
 public class BlackHole {
 
-    private byte[] horizon;
-    private int bits;
-    private int mass;
-    private long mask;
+    private final byte[] horizon;
+    private final int bits;
+    private final int mass;
+    private final long mask;
     private int count;
     private int redundant;
 
@@ -22,7 +22,7 @@ public class BlackHole {
         }
         this.bits = bits;
         mass = 0b1 << (bits - 3);
-        mask = (0b1 << bits) - 1;
+        mask = (0b1L << bits) - 1;
         horizon = new byte[mass];
     }
 
@@ -35,7 +35,7 @@ public class BlackHole {
         int address = (int) (hash & mask) >>> 3;
         int pos = (int) (hash & 0b111);
         byte value = (byte) (0b1 << pos);
-        byte old = (byte) horizon[address];
+        byte old = horizon[address];
         horizon[address] = (byte) (value | old);
         byte exist = (byte) (old & (byte) (0b1 << pos));
         count++;
@@ -52,12 +52,9 @@ public class BlackHole {
         long hash = gravity(s);
         int address = (int) (hash & mask) >>> 3;
         int pos = (int) (hash & 0b111);
-        byte value = (byte) horizon[address];
+        byte value = horizon[address];
         byte exist = (byte) (value & (byte) (0b1 << pos));
-        if (exist != 0) {
-            return true;
-        }
-        return false;
+        return exist != 0;
     }
 
     /**

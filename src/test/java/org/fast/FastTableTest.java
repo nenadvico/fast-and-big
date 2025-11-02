@@ -1,7 +1,7 @@
-package org.fast.search.hash;
+package org.fast;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Test class.
@@ -14,46 +14,46 @@ public class FastTableTest {
     public void testAddContains() {
         FastTable fastTable = new FastTable();
         fastTable.add(0);
-        Assert.assertTrue(fastTable.contains(0));
+        assertTrue(fastTable.contains(0));
         fastTable.add(1);
-        Assert.assertTrue(fastTable.contains(1));
+        assertTrue(fastTable.contains(1));
         fastTable.add(-1);
-        Assert.assertTrue(fastTable.contains(-1));
+        assertTrue(fastTable.contains(-1));
         fastTable.add(Integer.MAX_VALUE);
-        Assert.assertTrue(fastTable.contains(Integer.MAX_VALUE));
+        assertTrue(fastTable.contains(Integer.MAX_VALUE));
         fastTable.add(Integer.MIN_VALUE);
-        Assert.assertFalse(fastTable.contains(2));
-        Assert.assertFalse(fastTable.contains(Integer.MIN_VALUE + 1));
-        Assert.assertFalse(fastTable.contains(Integer.MAX_VALUE - 1));
-        Assert.assertFalse(fastTable.contains(12635574));
-        Assert.assertFalse(fastTable.contains(-849573839));
+        assertFalse(fastTable.contains(2));
+        assertFalse(fastTable.contains(Integer.MIN_VALUE + 1));
+        assertFalse(fastTable.contains(Integer.MAX_VALUE - 1));
+        assertFalse(fastTable.contains(12635574));
+        assertFalse(fastTable.contains(-849573839));
     }
 
     @Test
     public void testAddRemoveContains() {
         FastTable fastTable = new FastTable();
         fastTable.add(1);
-        Assert.assertTrue(fastTable.contains(1));
+        assertTrue(fastTable.contains(1));
         fastTable.add(-1);
-        Assert.assertTrue(fastTable.contains(-1));
+        assertTrue(fastTable.contains(-1));
         fastTable.add(Integer.MAX_VALUE);
-        Assert.assertTrue(fastTable.contains(Integer.MAX_VALUE));
+        assertTrue(fastTable.contains(Integer.MAX_VALUE));
         fastTable.add(Integer.MIN_VALUE);
 
         fastTable.remove(1);
-        Assert.assertFalse(fastTable.contains(1));
+        assertFalse(fastTable.contains(1));
         fastTable.remove(-1);
-        Assert.assertFalse(fastTable.contains(-1));
+        assertFalse(fastTable.contains(-1));
         fastTable.remove(Integer.MAX_VALUE);
-        Assert.assertFalse(fastTable.contains(Integer.MAX_VALUE));
+        assertFalse(fastTable.contains(Integer.MAX_VALUE));
         fastTable.remove(Integer.MIN_VALUE);
-        Assert.assertFalse(fastTable.contains(Integer.MIN_VALUE));
+        assertFalse(fastTable.contains(Integer.MIN_VALUE));
 
-        Assert.assertFalse(fastTable.contains(2));
-        Assert.assertFalse(fastTable.contains(Integer.MIN_VALUE+1));
-        Assert.assertFalse(fastTable.contains(Integer.MAX_VALUE-1));
-        Assert.assertFalse(fastTable.contains(12635574));
-        Assert.assertFalse(fastTable.contains(-849573839));
+        assertFalse(fastTable.contains(2));
+        assertFalse(fastTable.contains(Integer.MIN_VALUE+1));
+        assertFalse(fastTable.contains(Integer.MAX_VALUE-1));
+        assertFalse(fastTable.contains(12635574));
+        assertFalse(fastTable.contains(-849573839));
     }
 
     @Test
@@ -69,7 +69,7 @@ public class FastTableTest {
             result |= fastTable.add(i);
         }
         long end = System.nanoTime();
-        Assert.assertFalse(result);
+        assertFalse(result);
         System.out.println("Adding: "+size+" takes:"+(end-begin)+" ns average: "+((end-begin)/size)+" ns per add");
 
         System.out.println("Checking: "+size+" elements...");
@@ -78,7 +78,7 @@ public class FastTableTest {
         for(int i = (int)start; i < stop; i++) {
             result &= fastTable.contains(i);
         }
-        Assert.assertTrue(result);
+        assertTrue(result);
         end = System.nanoTime();
         System.out.println("Checking: "+size+" takes:"+(end-begin)+" ns average: "+((end-begin)/size)+" ns per check");
 
@@ -88,7 +88,7 @@ public class FastTableTest {
         for(int i = (int)start; i < stop; i++) {
             result &= fastTable.remove(i);
         }
-        Assert.assertTrue(result);
+        assertTrue(result);
         end = System.nanoTime();
         System.out.println("Removing: "+size+" takes:"+(end-begin)+" ns average: "+((end-begin)/size)+" ns per remove");
     }

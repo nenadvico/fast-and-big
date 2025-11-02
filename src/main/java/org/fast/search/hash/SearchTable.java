@@ -1,7 +1,6 @@
 package org.fast.search.hash;
 
-import java.util.HashSet;
-import java.util.Set;
+import org.fast.FastTable;
 
 /**
  * Used for fast memory search based on hash codes. Object requires 512 MB of memory.
@@ -23,7 +22,7 @@ import java.util.Set;
 
 public class SearchTable<T>
 {
-    private FastTable fastTable = new FastTable();
+    private final FastTable fastTable = new FastTable();
 
     /**
      * Adds object to table.
