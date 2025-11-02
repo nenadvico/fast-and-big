@@ -19,13 +19,12 @@ public class UniqueIntegerBitSortTest {
 
     @Test
      public void testBasicSort() {
-        int[] array = { -1, 7, 6, 9, 67108864, 18, 3, 3467, 0, -36678, -1212124343, 100, Integer.MAX_VALUE, Integer.MIN_VALUE};
-        int[] copy = Arrays.copyOf(array, array.length);
-        directSort.sort(copy);
+        int[] array = { -1, 7, 6, 9, 67108864, 18, 3, 3467, 0, 100, -36678, -1212124343, 100, Integer.MAX_VALUE, Integer.MIN_VALUE};
+        int[] expected = {Integer.MIN_VALUE, -1212124343, -36678, -1, 0, 3, 6, 7, 9, 18, 100, 3467, 67108864, Integer.MAX_VALUE};
+        int[] copy = directSort.sort(array);
         Arrays.sort(array);
         System.out.println(Arrays.toString(copy));
-        System.out.println(Arrays.toString(array));
-        assertArrayEquals(array, copy);
+        assertArrayEquals(expected, copy);
     }
 
     @Test
@@ -33,8 +32,7 @@ public class UniqueIntegerBitSortTest {
         Random random = new Random();
         int size = 10000;
         int[] array = random.ints(size).toArray();
-        int[] copy = Arrays.copyOf(array, array.length);
-        directSort.sort(copy);
+        int[] copy = directSort.sort(array);
         Arrays.sort(array);
         assertArrayEquals(array, copy);
     }
@@ -56,16 +54,10 @@ public class UniqueIntegerBitSortTest {
             array[first] = array[second];
             array[second] = temp;
         }
-        int[] copy = Arrays.copyOf(array, array.length);
         System.out.println("Sorting of " + size + " elements started ....");
         long start = System.nanoTime();
-        directIntegerSort.sort(copy);
+        directIntegerSort.sort(array);
         long stop = System.nanoTime();
-        System.out.println("BitSet Sorted for: " + ((stop-start)/1000000) + " ms");
-        copy = Arrays.copyOf(array, array.length);
-        start = System.nanoTime();
-        directIntegerSort.sort(copy);
-        stop = System.nanoTime();
         System.out.println("BitSet Sorted for: " + ((stop-start)/1000000) + " ms");
         start = System.nanoTime();
         Arrays.sort(array);
