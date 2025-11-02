@@ -13,9 +13,9 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
  * User: vico.nenad@gmail.com
  * To change this template use File | Settings | File Templates.
  */
-public class DirectIntegerNoDuplicatesSortTest {
+public class UniqueIntegerBitSortTest {
 
-    private final DirectIntegerNoDuplicatesSort directSort = new DirectIntegerNoDuplicatesSort();
+    private final UniqueIntegerBitSetSort directSort = new UniqueIntegerBitSetSort();
 
     @Test
      public void testBasicSort() {
@@ -41,7 +41,7 @@ public class DirectIntegerNoDuplicatesSortTest {
 
     @Test
     public void testPerformanceRandoSort1GData() {
-        DirectIntegerNoDuplicatesSort directIntegerSort = new DirectIntegerNoDuplicatesSort();
+        UniqueIntegerBitSetSort directIntegerSort = new UniqueIntegerBitSetSort();
         Random random = new Random();
         int size = 100000000;
         int half = size/2;

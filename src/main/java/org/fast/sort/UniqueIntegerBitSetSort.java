@@ -1,14 +1,12 @@
 package org.fast.sort;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 
 /**
  *
  */
-public class DirectIntegerNoDuplicatesSort {
+public class UniqueIntegerBitSetSort {
 
     private static final int SIZE = 67108864;
     private static final int SHIFT = 6;
@@ -16,12 +14,9 @@ public class DirectIntegerNoDuplicatesSort {
     private boolean needToInit;
 
     public void sort(int[] array) {
-        long initStart = System.nanoTime();
         if (needToInit) {
             init();
         }
-        long insertStart = System.nanoTime();
-        System.out.println("Init time: "+ ((insertStart-initStart)/1000) + "us");
         int min = Integer.MAX_VALUE;
         int max = Integer.MIN_VALUE;
         needToInit = true;
@@ -34,8 +29,6 @@ public class DirectIntegerNoDuplicatesSort {
             }
             table[in >>> SHIFT] |= (0x1L << (in & 0x3f));;
         }
-        long insertEnd = System.nanoTime();
-        System.out.println("Insert time: " + ((insertEnd-insertStart)/1000) + "us");
         int arrIndex = 0;
         if (min < 0) {
             int upper = SIZE;
@@ -77,8 +70,6 @@ public class DirectIntegerNoDuplicatesSort {
                 }
             }
         }
-        long readEnd = System.nanoTime();
-        System.out.println("Read time  :  " + ((readEnd-insertEnd)/1000) + "us");
     }
 
     public void init() {
@@ -90,7 +81,7 @@ public class DirectIntegerNoDuplicatesSort {
 
 
     public static void main(String[] args) {
-        DirectIntegerNoDuplicatesSort directIntegerSort = new DirectIntegerNoDuplicatesSort();
+        UniqueIntegerBitSetSort directIntegerSort = new UniqueIntegerBitSetSort();
         Random random = new Random();
         int size = 1000000000;
         int half = size/2;
@@ -110,12 +101,12 @@ public class DirectIntegerNoDuplicatesSort {
         long start = System.nanoTime();
         directIntegerSort.sort(copy);
         long stop = System.nanoTime();
-        System.out.println("Direct Sorted for: " + ((stop-start)/1000000) + " ms");
+        System.out.println("Bit Sorted for: " + ((stop-start)/1000000) + " ms");
         copy = Arrays.copyOf(array, array.length);
         start = System.nanoTime();
         directIntegerSort.sort(copy);
         stop = System.nanoTime();
-        System.out.println("Direct Sorted for: " + ((stop-start)/1000000) + " ms");
+        System.out.println("Bit Sorted for: " + ((stop-start)/1000000) + " ms");
         start = System.nanoTime();
         Arrays.sort(array);
         stop = System.nanoTime();
