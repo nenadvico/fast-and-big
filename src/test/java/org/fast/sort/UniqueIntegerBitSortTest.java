@@ -47,7 +47,7 @@ public class UniqueIntegerBitSortTest {
         int half = size/2;
         int[] array = new int[size];
         for(int i = 0; i < size; i++) {
-            array[i] = size - i;
+            array[i] = half - i;
         }
         for(int i = 0; i < size/3; i++) {
             int first = random.nextInt(size);
@@ -61,12 +61,12 @@ public class UniqueIntegerBitSortTest {
         long start = System.nanoTime();
         directIntegerSort.sort(copy);
         long stop = System.nanoTime();
-        System.out.println("Direct Sorted for: " + ((stop-start)/1000000) + " ms");
+        System.out.println("BitSet Sorted for: " + ((stop-start)/1000000) + " ms");
         copy = Arrays.copyOf(array, array.length);
         start = System.nanoTime();
         directIntegerSort.sort(copy);
         stop = System.nanoTime();
-        System.out.println("Direct Sorted for: " + ((stop-start)/1000000) + " ms");
+        System.out.println("BitSet Sorted for: " + ((stop-start)/1000000) + " ms");
         start = System.nanoTime();
         Arrays.sort(array);
         stop = System.nanoTime();
